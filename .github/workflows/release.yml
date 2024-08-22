@@ -18,7 +18,10 @@ jobs:
         with:
           repository: 'rebelonion/Dantotsu'
           fetch-depth: 0
-
+          
+      - name: dept 
+        run: ls
+        
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
