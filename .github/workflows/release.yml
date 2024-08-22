@@ -94,7 +94,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assembleFdroidRelease -Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/key.keystore -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew assembleFdroidRelease
 
       - name: Move APK and calculate checksum
         run: |
