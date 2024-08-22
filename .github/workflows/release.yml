@@ -19,21 +19,10 @@ jobs:
           repository: 'rebelonion/Dantotsu'
           fetch-depth: 0
           
-      - name: dept 
-        run: ls
-        
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-         fetch-depth: 0
-
-      - name: dept 
-        run: ls
-
       - name: Download last SHA artifact
         uses: dawidd6/action-download-artifact@v3
         with:
-          workflow: beta.yml
+          workflow: release.yml
           name: last-sha
           path: .
         continue-on-error: true
