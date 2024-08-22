@@ -115,7 +115,7 @@ jobs:
             New ${{ env.VERSION }} build has arrived.
             ---
             Commits: 
-            ${{ env.COMMIT_LOG }}
+            ${{ env.COMMIT_LOGS }}
             
             ### Checksums
 
