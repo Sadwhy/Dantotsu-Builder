@@ -1,9 +1,11 @@
-name: Build a Release
+name: Build Preview App
 
 permissions:
   contents: write
 
 on:
+  schedule:
+      - cron: '0 0 1 1 *'
   workflow_dispatch:
 
 jobs:
@@ -21,18 +23,38 @@ jobs:
           fetch-depth: 0
           
       - name: Download last SHA artifact
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v6
         with:
+          repo: 'Sadwhy/Dantotsu-Builder'
           workflow: release.yml
           name: last-sha
           path: .
         continue-on-error: true
 
-      - name: Get Commits Since Last Run
+      - name: Check for updates
         run: |
+          LATEST_SHA=$(git rev-parse HEAD)
+          echo "Latest commit SHA: $LATEST_SHA"
+
+          # Read the last SHA from last_sha.txt if it exists
           if [ -f last_sha.txt ]; then
             LAST_SHA=$(cat last_sha.txt)
+            echo "Last saved commit SHA: $LAST_SHA"
           else
+            LAST_SHA=""
+            echo "No previous SHA found."
+          fi
+
+          if [ "$LATEST_SHA" == "$LAST_SHA" ]; then
+            echo "No updates found. Canceling the workflow."
+            exit 1
+          else
+            echo "Updates found. Continuing workflow."
+          fi
+
+      - name: Get Commits Since Last Run
+        run: |
+          if [ ! -f last_sha.txt ]; then
             # Fallback to first commit if no previous SHA available
             LAST_SHA=$(git rev-list --max-parents=0 HEAD)
           fi
