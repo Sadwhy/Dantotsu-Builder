@@ -121,6 +121,12 @@ jobs:
           mv app/build/outputs/apk/fdroid/release/app-fdroid-release-signed.apk release-fdroid-${{ env.VERSION }}.apk
           echo "FDROID=$(sha256sum release-fdroid-${{ env.VERSION }}.apk | cut -d' ' -f1)" >> $GITHUB_ENV
 
+      - name: Upload Current SHA as an Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: last-sha
+          path: last_sha.txt
+
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
