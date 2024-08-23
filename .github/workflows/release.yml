@@ -75,7 +75,7 @@ jobs:
         continue-on-error: true
 
       - name: Save Current SHA for Next Run
-        run: echo "$LATEST_SHA" > last_sha.txt
+        run: echo ${{ env.LATEST_SHA }} > last_sha.txt
 
       - name: Fetch version name
         run: |
