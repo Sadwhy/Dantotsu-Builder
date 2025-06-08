@@ -1,3 +1,5 @@
+# ⚠️ Due to the DMCA takedown of the app source code this will no longer work.
+
 # Weekly Preview Release of Dantotsu
 
 This repository automatically builds [**Dantotsu**](https://github.com/rebelonion/Dantotsu/tree/dev) every **Friday at 6 AM (Standard Time)**.  
